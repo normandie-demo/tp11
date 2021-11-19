@@ -1,0 +1,20 @@
+---
+- hosts: back
+  gather_facts: true
+  become: true
+
+  tasks:
+
+  - name: Write config
+    ansible.builtin.copy:
+      dest: /etc/my.cnf.d/listen.cnf
+      content: |
+        [server]
+        bind-address={{ ansible_facts.default_ipv4.address }}
+      owner: root
+      mode: 644
+
+  - name: Restart service
+    ansible.builtin.systemd:
+      name: mariadb
+      state: restarted
