@@ -12,3 +12,5 @@ vi config.yaml
 ```Shell
 ansible-playbook -i inventory config.yaml
 ```
+
+Lien vers le dossier [corrections](../Correction)
